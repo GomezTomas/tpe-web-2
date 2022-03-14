@@ -12,15 +12,23 @@
 <body>
 
     <div class="container">
-        <nav class="nav">
-            <a class="nav-link" href="home">Home</a>
-            {if $logged}
-            <a class="nav-link" href="showBooks">Libros</a>
-            <a class="nav-link" href="showAuthors">Autores</a>
-            <a class="nav-link" href="logout">Cerrar Sesion</a>
-            {else}
-            <a class="nav-link" href="login">Iniciar Sesion</a>
-            {/if}
+        <nav class="nav d-flex justify-content-between">
+            <div class="d-flex flex-row">
+                <a class="nav-link" href="home">Home</a>
+                {if $rol == 1}
+                <a class="nav-link" href="showBooks">Libros</a>
+                <a class="nav-link" href="showAuthors">Autores</a>
+                <a class="nav-link" href="showUsers">Usuarios</a>
+                {/if}
+            </div>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                {if $logged}
+                <a class="nav-link" href="logout">Cerrar Sesion</a>
+                {else}
+                <a class="nav-link" href="login">Iniciar Sesion</a>
+                <a class="nav-link" href="register">Registrarse</a>
+                {/if}
+            </div>
         </nav>
         <h1>Biblioteca</h1>
         <div class="row">

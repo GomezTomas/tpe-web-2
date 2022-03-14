@@ -7,12 +7,25 @@ class AuthHelper{
 
     function startSession(){
         session_start();
+        if(isset($_SESSION['rol'])){
+            return $_SESSION['rol'];
+        }else{
+            return null;
+        }
     }
 
     function checkLoggedIn(){
         session_start();
         if(!isset($_SESSION['email'])){
             header('Location:'. BASE_URL. 'login');
+        }
+    }
+
+    function checkRol(){
+        if(isset($_SESSION['rol']) && $_SESSION['rol'] == 1){
+            return true;
+        }else{
+            return false;
         }
     }
 

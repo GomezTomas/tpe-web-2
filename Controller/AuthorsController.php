@@ -26,18 +26,22 @@ class AuthorsController{
     }
 
     function showAuthor($id){
-        $this->authHelper->startSession();
+        $rol = $this->authHelper->startSession();
 
         $author = $this->model->getAuthor($id);
         $books = $this->booksModel->getBooks();
-        $this->view->renderAuthor($author, $books);
+        $this->view->renderAuthor($author, $books, $rol);
     }
 
     function showAuthorsAdmin(){
         $this->authHelper->checkLoggedIn();
+        if($this->authHelper->checkRol()){
+            $authors = $this->model->getAuthors();
+            $this->view->renderAuthorsAdmin($authors);
+        }else{
+            $this->view->relocateHome();
+        }
 
-        $authors = $this->model->getAuthors();
-        $this->view->renderAuthorsAdmin($authors);
     }
 
     function addAuthor(){
@@ -51,20 +55,26 @@ class AuthorsController{
 
     function deleteAuthor($id){
         $this->authHelper->checkLoggedIn();
-
-        try{
-            $this->model->deleteAuthor($id);
-            $this->view->relocateAuthors();
-        }catch(Exception $e){
-            $this->view->showError();
+        if($this->authHelper->checkRol()){
+            try{
+                $this->model->deleteAuthor($id);
+                $this->view->relocateAuthors();
+            }catch(Exception $e){
+                $this->view->showError();
+            }
+        }else{
+            $this->view->relocateHome();
         }
     }
 
     function modAuthor($id){
         $this->authHelper->checkLoggedIn();
-        
-        $author = $this->model->getAuthor($id);
-        $this->view->renderUpdate($id, $author);
+        if($this->authHelper->checkRol()){
+            $author = $this->model->getAuthor($id);
+            $this->view->renderUpdate($id, $author);
+        }else{
+            $this->view->relocateHome();
+        }
     }
 
     function updateAuthor($id){

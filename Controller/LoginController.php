@@ -17,10 +17,10 @@ class LoginController{
     }
 
     function login(){
-        $this->view->showLogin();
+        $this->view->showLogin(null);
     }
 
-    function verify(){
+    function verify($user = null, $email = null){
         if(!empty($_POST['email']) && !empty($_POST['password'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -30,14 +30,33 @@ class LoginController{
             if($user && password_verify($password, $user->password)){
                 session_start();
                 $_SESSION['email'] = $email;
+                $_SESSION['rol'] = $user->rol;
                 $this->view->relocateHome();
             }else{
-                $this->view->showLogin("Acceso denegado!");
+                $this->view->showLogin(null, "Acceso denegado!");
             }
     }
 
     function logout(){
         $this->authHelper->logout();
-        $this->view->showLogin("Hasta Pronto!");
+        $this->view->showLogin(null, "Hasta Pronto!");
+    }
+
+    function showRegister(){
+        $this->view->showRegister(null);
+    }
+
+    function register(){
+        if(!empty($_POST['email']) && !empty($_POST['password'])){
+            $email = $_POST['email'];
+            $pass = $_POST['password'];
+            $password = password_hash($pass, PASSWORD_BCRYPT);
+            $this->model->addUser($email, $password);
+            $this->verify($email, $pass);
+        }else{
+            $this->view->showRegister(null, "Registro denegado!");
+        }
+
+        
     }
 }

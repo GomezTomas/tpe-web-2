@@ -3,7 +3,7 @@
 require_once 'Controller/BooksController.php';
 require_once 'Controller/AuthorsController.php';
 require_once 'Controller/LoginController.php';
-
+require_once 'Controller/UserController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -18,12 +18,19 @@ $params = explode('/', $action);
 $booksController = new BooksController();
 $authorsController = new AuthorsController();
 $loginController = new LoginController();
+$userController = new UserController();
 
 
 switch($params[0]){
     case 'home':
         $booksController->showBooks();
         $authorsController->showAuthors();
+        break;
+    case 'register':
+        $loginController->showRegister();
+        break;
+    case 'addUser':
+        $loginController->register();
         break;
     case 'login':
         $loginController->login();
@@ -33,6 +40,18 @@ switch($params[0]){
         break;
     case 'logout':
         $loginController->logout();
+        break;
+    case 'showUsers':
+        $userController->showUsers();
+        break;
+    case 'deleteUser':
+        $userController->deleteUser($params[1]);
+        break;
+    case 'adminUser':
+        $userController->updateUser($params[1], 1);
+        break;
+    case 'deleteAdmin':
+        $userController->updateUser($params[1], 0);
         break;
     case 'showBook':
         $booksController->showBook($params[1]);

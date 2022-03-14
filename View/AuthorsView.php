@@ -16,7 +16,7 @@ class AuthorsView{
         $this->smarty->display('./templates/authors.tpl');
     }
 
-    function renderAuthor($author, $books){
+    function renderAuthor($author, $books, $rol){
         foreach($books as $book){
             if($author->id_autor == $book->id_autor){
                 $libros[] = $book->titulo;
@@ -25,12 +25,15 @@ class AuthorsView{
         $this->smarty->assign('author', $author);
         $this->smarty->assign('libros', $libros);
         $this->smarty->assign('logged', isset($_SESSION['email']));
+        $this->smarty->assign('rol', $rol);
         $this->smarty->display('./templates/author.tpl');
     }
 
     function renderAuthorsAdmin($authors){
         $this->smarty->assign('authors',$authors);
         $this->smarty->assign('logged', isset($_SESSION['email']));
+        $this->smarty->assign('rol', $_SESSION['rol']);
+
         $this->smarty->display('./templates/authorsAdmin.tpl');
     }
 
@@ -38,15 +41,23 @@ class AuthorsView{
         header("Location:".BASE_URL."showAuthors");
     }
 
+    function relocateHome(){
+        header("Location:".BASE_URL."home");
+    }
+
     function renderUpdate($id, $author){
         $this->smarty->assign('author', $author);
         $this->smarty->assign('id', $id);
         $this->smarty->assign('logged', isset($_SESSION['email']));
+        $this->smarty->assign('rol', $_SESSION['rol']);
+
         $this->smarty->display("./templates/authorUpdate.tpl");
     }
 
     function showError(){
         $this->smarty->assign('logged', isset($_SESSION['email']));
+        $this->smarty->assign('rol', $_SESSION['rol']);
+
         $this->smarty->display("./templates/error.tpl");
     }
 }

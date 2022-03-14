@@ -20,27 +20,31 @@ class BooksController{
     }
 
     function showBooks(){
-        $this->authHelper->startSession();
+        $rol = $this->authHelper->startSession();
 
         $books = $this->model->getBooks();
         $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBooks($books, $authors);
+        $this->view->renderBooks($books, $authors, $rol);
     }
 
     function showBook($id){
-        $this->authHelper->startSession();
+        $rol = $this->authHelper->startSession();
 
         $book = $this->model->getBook($id);
         $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBook($book, $authors);
+        $this->view->renderBook($book, $authors, $rol);
     }
 
     function showBooksAdmin(){   
         $this->authHelper->checkLoggedIn();
+        if($this->authHelper->checkRol()){
+            $books = $this->model->getBooks();
+            $authors = $this->authorsModel->getAuthors();
+            $this->view->renderBooksAdmin($books, $authors);
+        }else{
+            $this->view->relocateHome();
+        }
 
-        $books = $this->model->getBooks();
-        $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBooksAdmin($books, $authors);
     }
 
     function addBook(){
@@ -54,17 +58,25 @@ class BooksController{
 
     function deleteBook($id){
         $this->authHelper->checkLoggedIn();
+        if($this->authHelper->checkRol()){
+            $this->model->deleteBook($id);
+            $this->view->relocateBooks();
+        }else{
+            $this->view->relocateHome();
+        }
 
-        $this->model->deleteBook($id);
-        $this->view->relocateBooks();
     }
 
     function modBook($id){
         $this->authHelper->checkLoggedIn();
+        if($this->authHelper->checkRol()){
+            $book = $this->model->getBook($id);
+            $authors = $this->authorsModel->getAuthors();
+            $this->view->renderUpdate($id, $authors, $book);
+        }else{
+            $this->view->relocateHome();
+        }
 
-        $book = $this->model->getBook($id);
-        $authors = $this->authorsModel->getAuthors();
-        $this->view->renderUpdate($id, $authors, $book);
     }
 
     function updateBook($id){
