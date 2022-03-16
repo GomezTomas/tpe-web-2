@@ -17,7 +17,7 @@ class LoginController{
     }
 
     function login(){
-        $this->view->showLogin(null);
+        $this->view->showLogin();
     }
 
     function verify($user = null, $email = null){
@@ -33,17 +33,17 @@ class LoginController{
                 $_SESSION['rol'] = $user->rol;
                 $this->view->relocateHome();
             }else{
-                $this->view->showLogin(null, "Acceso denegado!");
+                $this->view->showLogin("Acceso denegado!");
             }
     }
 
     function logout(){
         $this->authHelper->logout();
-        $this->view->showLogin(null, "Hasta Pronto!");
+        $this->view->showLogin("Hasta Pronto!");
     }
 
     function showRegister(){
-        $this->view->showRegister(null);
+        $this->view->showRegister();
     }
 
     function register(){
@@ -54,7 +54,7 @@ class LoginController{
             $this->model->addUser($email, $password);
             $this->verify($email, $pass);
         }else{
-            $this->view->showRegister(null, "Registro denegado!");
+            $this->view->showRegister("Registro denegado!");
         }
 
         

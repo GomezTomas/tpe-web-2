@@ -20,19 +20,25 @@ class BooksController{
     }
 
     function showBooks(){
-        $rol = $this->authHelper->startSession();
-
+        $datos = $this->authHelper->startSession();
+        if(!$datos){
+            $datos[0] = '';
+            $datos[1] = '';
+        }
         $books = $this->model->getBooks();
         $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBooks($books, $authors, $rol);
+        $this->view->renderBooks($books, $authors, $datos[0], $datos[1]);
     }
 
     function showBook($id){
-        $rol = $this->authHelper->startSession();
-
+        $datos = $this->authHelper->startSession();
+        if(!$datos){
+            $datos[0] = '';
+            $datos[1] = '';
+        }
         $book = $this->model->getBook($id);
         $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBook($book, $authors, $rol);
+        $this->view->renderBook($book, $authors, $datos[0], $datos[1]);
     }
 
     function showBooksAdmin(){   

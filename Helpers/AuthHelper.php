@@ -8,7 +8,8 @@ class AuthHelper{
     function startSession(){
         session_start();
         if(isset($_SESSION['rol'])){
-            return $_SESSION['rol'];
+            $datos = [$_SESSION['rol'], $_SESSION['email']];
+            return $datos;
         }else{
             return null;
         }

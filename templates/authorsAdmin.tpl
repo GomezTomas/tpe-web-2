@@ -1,10 +1,14 @@
 {include file='header.tpl'}
 <h3>Agregar Autor</h3>
 <form action="addAuthor" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre">
-    <input type="text" name="apellido" placeholder="Apellido">
-    <input type="text" name="nacionalidad" placeholder="Nacionalidad">
-    <input type="submit" value="Agregar Autor">
+    <div class="input-group mb-3">
+        <input class="form-control" type="text" name="nombre" placeholder="Nombre">
+        <input class="form-control" type="text" name="apellido" placeholder="Apellido">
+        <input type="text" class="form-control" name="nacionalidad" placeholder="Nacionalidad">
+    </div>
+    <div class="input-group mb-3">
+        <input type="submit" class="btn btn-outline-primary form-control" value="Agregar Autor">
+    </div>
 </form>
 <h3>Modificar o Eliminar Autor</h3>
 <ul class="list-group list-group-flush">

@@ -26,11 +26,15 @@ class AuthorsController{
     }
 
     function showAuthor($id){
-        $rol = $this->authHelper->startSession();
+        $datos = $this->authHelper->startSession();
 
         $author = $this->model->getAuthor($id);
         $books = $this->booksModel->getBooks();
-        $this->view->renderAuthor($author, $books, $rol);
+        if(!$datos){
+            $datos[0] = '';
+            $datos[1] = '';
+        }
+        $this->view->renderAuthor($author, $books, $datos[0], $datos[1]);
     }
 
     function showAuthorsAdmin(){

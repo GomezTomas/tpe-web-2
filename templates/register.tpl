@@ -1,6 +1,6 @@
 {include file='header.tpl'}
 <div class="container">
-<h2>Registeer</h2>
+<h2>Register</h2>
 <form action="addUser" method="POST">
     <input type="text" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Password">

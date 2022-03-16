@@ -1,15 +1,22 @@
 {include file='header.tpl'}
 <h3>Agregar Libro</h3>
 <form action="addBook" method="POST">
-    <input type="text" name="titulo" placeholder="Titulo">
-    <input type="text" name="genero" placeholder="Genero">
-    <input type="text" name="descripcion" placeholder="Descripcion">
-    <select name="autor">
-        {foreach from=$authors item=$author}
-            <option value="{$author->id_autor}">{$author->apellido}, {$author->nombre}</option>
-        {/foreach}
-    </select>
-    <input type="submit" value="Agregar Libro">
+    <div class="input-group mb-3">
+
+        <input class="form-control" type="text" name="titulo" placeholder="Titulo">
+        <input class="form-control" type="text" name="genero" placeholder="Genero">
+        <select class="form-select" name="autor">
+            {foreach from=$authors item=$author}
+                <option value="{$author->id_autor}">{$author->apellido}, {$author->nombre}</option>
+            {/foreach}
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <textarea class="form-control" rows="3" name="descripcion" placeholder="Descripcion"></textarea>
+    </div>
+    <div class="input-group mb-3">
+        <input class="btn btn-outline-primary form-control" type="submit" value="Agregar Libro">
+    </div>
 </form>
 <h3>Modificar o Eliminar Libro</h3>
 <ul class="list-group list-group-flush">

@@ -8,6 +8,7 @@
     <title>Biblioteca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </head>
 <body>
 
@@ -24,6 +25,7 @@
             <div class="d-flex flex-row-reverse bd-highlight">
                 {if $logged}
                 <a class="nav-link" href="logout">Cerrar Sesion</a>
+                <span class="nav-link disabled">{$email}</span>
                 {else}
                 <a class="nav-link" href="login">Iniciar Sesion</a>
                 <a class="nav-link" href="register">Registrarse</a>

@@ -5,8 +5,12 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col">
-                    <span>{$user->email}</span>
+                    {$user->email}
+                </div> 
+                <div class="col">
+                    {if $user->rol}Admin{else} Usuario Normal {/if}
                 </div>
+                
                 <div class="col btn-group">
                     <a class="btn btn-outline-danger btn-sm" href="deleteUser/{$user->id}">Borrar Usuario</a> 
                     <a class="btn btn-outline-primary btn-sm" href="adminUser/{$user->id}">Hacer Admin</a>

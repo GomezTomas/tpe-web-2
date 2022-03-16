@@ -10,7 +10,7 @@ class BooksView{
         $this->smarty = new Smarty();
     }
 
-    function renderBooks($books, $authors, $rol){
+    function renderBooks($books, $authors, $rol, $email){
         foreach($authors as $author){
             $autores[$author->id_autor] = "$author->apellido, $author->nombre";
         }
@@ -18,11 +18,13 @@ class BooksView{
         $this->smarty->assign('authors', $autores);
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $rol);
+        $this->smarty->assign('email', $email);
+
 
         $this->smarty->display('./templates/home.tpl');
     }
 
-    function renderBook($book, $authors, $rol){
+    function renderBook($book, $authors, $rol, $email){
         foreach($authors as $author){
             if($book->id_autor == $author->id_autor)
             $autor = "$author->apellido, $author->nombre";
@@ -31,6 +33,7 @@ class BooksView{
         $this->smarty->assign('author', $autor);
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $rol);
+        $this->smarty->assign('email', $email);
         $this->smarty->display('./templates/book.tpl');
 
     }
@@ -44,6 +47,7 @@ class BooksView{
         $this->smarty->assign('authors', $authors);
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $_SESSION['rol']);
+        $this->smarty->assign('email',$_SESSION['email']);
 
         $this->smarty->display('./templates/books.tpl');
     }
@@ -61,6 +65,7 @@ class BooksView{
         $this->smarty->assign('id', $id);
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $_SESSION['rol']);
+        $this->smarty->assign('email',$_SESSION['email']);
 
         $this->smarty->display("./templates/bookUpdate.tpl");
     }

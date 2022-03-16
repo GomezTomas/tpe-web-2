@@ -6,5 +6,4 @@
         <li class="list-group-item">{$libro}</li>
     {/foreach}
 </ul>
-<a href="home">Home</a>
 {include file='footer.tpl'}

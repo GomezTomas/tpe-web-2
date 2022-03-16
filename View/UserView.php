@@ -14,6 +14,7 @@ class UserView{
         $this->smarty->assign('users', $users);
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $_SESSION['rol']);
+        $this->smarty->assign('email',$_SESSION['email']);
 
         $this->smarty->display('./templates/users.tpl');
     }
