@@ -26,5 +26,4 @@
     {/foreach}
 </ul>
 
-
 {include file='footer.tpl'}

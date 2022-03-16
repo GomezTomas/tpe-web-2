@@ -7,6 +7,6 @@ select{
 p{
     text-align: justify;
 }
-#select-puntuacion{
+#select-puntuacion, #asc{
     margin-bottom: 7px;
 }

@@ -31,8 +31,7 @@ class AuthorsController{
         $author = $this->model->getAuthor($id);
         $books = $this->booksModel->getBooks();
         if(!$datos){
-            $datos[0] = '';
-            $datos[1] = '';
+            $datos = ["", ""];
         }
         $this->view->renderAuthor($author, $books, $datos[0], $datos[1]);
     }

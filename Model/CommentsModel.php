@@ -14,6 +14,18 @@ class CommentsModel{
         $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
+    function getCommentsAsc(){
+        $sentencia = $this->db->prepare('SELECT * FROM comentarios ORDER BY puntuacion');
+        $sentencia->execute();
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+    function getCommentsDesc(){
+        $sentencia = $this->db->prepare('SELECT * FROM comentarios ORDER BY puntuacion DESC');
+        $sentencia->execute();
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
 
     function getComment($id){
         $sentencia = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ?");

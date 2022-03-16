@@ -22,8 +22,7 @@ class BooksController{
     function showBooks(){
         $datos = $this->authHelper->startSession();
         if(!$datos){
-            $datos[0] = '';
-            $datos[1] = '';
+            $datos= ['', ''];
         }
         $books = $this->model->getBooks();
         $authors = $this->authorsModel->getAuthors();

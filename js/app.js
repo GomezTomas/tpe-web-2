@@ -5,8 +5,21 @@ const API_URL = "api/comentarios";
 let idLibro = document.querySelector("#id-libro").dataset.id;
 let rol = document.querySelector("#id-libro").dataset.rol;
 let submitComment = document.querySelector("#comentar");
+let orderAsc = document.querySelector("#asc");
+let orderDesc = document.querySelector("#desc");
+
 if(submitComment){
     submitComment.addEventListener("click", addComment);
+}
+if(orderAsc){
+    orderAsc.addEventListener("click", e => {
+        getCommentsOrder(e.target.id);
+    });
+}
+if(orderAsc){
+    orderDesc.addEventListener("click", e => {
+        getCommentsOrder(e.target.id);
+    });
 }
 
 
@@ -15,7 +28,16 @@ async function getComments(){
         let response = await fetch(API_URL);
         let comments = await response.json();
         app.comments = comments;
-        assignDelete();
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function getCommentsOrder(order){
+    let url = API_URL + "?order=" + order;
+    try {
+        let response = await fetch(url);
+        let comments = await response.json();
+        app.comments = comments;
     } catch (error) {
         console.log(error);
     }

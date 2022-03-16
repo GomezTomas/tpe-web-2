@@ -27,6 +27,14 @@
 <div id="comments" data-user = "{$id}">
     {include file="vue/comments.tpl"}
 </div>
+<div class=row>
+<div class=col>
+<button id="asc" class="btn btn-outline-primary form-control">Ordernar asc</button>
+</div>
+<div class=col>
+<button id="desc" class="btn btn-outline-primary form-control">Ordernar desc</button>
+</div>
+</div>
 
 <script src="js/app.js"></script>
 

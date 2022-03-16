@@ -19,9 +19,20 @@ class ApiController{
     }
 
     function getComments(){
-        $comments = $this->model->getComments();
-        return $this->view->response($comments, 200);
+        if(isset($_GET['order'])){
+            if($_GET['order'] == 'asc'){
+                $comments = $this->model->getCommentsAsc();
+                return $this->view->response($comments, 200);
+            }else if($_GET['order'] == 'desc'){
+                $comments = $this->model->getCommentsDesc();
+                return $this->view->response($comments, 200);
+            }
+        }else{
+            $comments = $this->model->getComments();
+            return $this->view->response($comments, 200);
+        }
     }
+
     function getComment($params = []){
         $idComment = $params[':ID'];
         $comment = $this->model->getComment($idComment);
@@ -39,7 +50,6 @@ class ApiController{
             return $this->view->response("Comentario insertado", 200);
         }else{
             return $this->view->response("Datos incorrectos", 400);
-
         }
     }
 
@@ -53,4 +63,5 @@ class ApiController{
             return $this->view->response("No se encontro el comentario", 400);
         }
     }
+
 }
