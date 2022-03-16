@@ -2,9 +2,11 @@
 <div class="container">
 <h2>Login</h2>
 <form action="verify" method="POST">
-    <input type="text" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
+    <div class="input-group mb-3">
+        <input class="form-control" type="text" name="email" placeholder="Email" required>
+        <input class="form-control" type="password" name="password" placeholder="Password">
+    </div>
+    <input class="btn btn-outline-primary form-control" type="submit" value="Login">
 </form>
 <p>{$msg}</p>
 <div>

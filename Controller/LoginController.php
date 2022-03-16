@@ -31,6 +31,7 @@ class LoginController{
                 session_start();
                 $_SESSION['email'] = $email;
                 $_SESSION['rol'] = $user->rol;
+                $_SESSION['id'] = $user->id;
                 $this->view->relocateHome();
             }else{
                 $this->view->showLogin("Acceso denegado!");
@@ -56,7 +57,5 @@ class LoginController{
         }else{
             $this->view->showRegister("Registro denegado!");
         }
-
-        
     }
 }

@@ -24,7 +24,7 @@ class BooksView{
         $this->smarty->display('./templates/home.tpl');
     }
 
-    function renderBook($book, $authors, $rol, $email){
+    function renderBook($book, $authors, $rol, $email, $id){
         foreach($authors as $author){
             if($book->id_autor == $author->id_autor)
             $autor = "$author->apellido, $author->nombre";
@@ -34,6 +34,7 @@ class BooksView{
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $rol);
         $this->smarty->assign('email', $email);
+        $this->smarty->assign('id', $id);
         $this->smarty->display('./templates/book.tpl');
 
     }

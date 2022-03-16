@@ -33,12 +33,11 @@ class BooksController{
     function showBook($id){
         $datos = $this->authHelper->startSession();
         if(!$datos){
-            $datos[0] = '';
-            $datos[1] = '';
+            $datos = ['', '', ''];
         }
         $book = $this->model->getBook($id);
         $authors = $this->authorsModel->getAuthors();
-        $this->view->renderBook($book, $authors, $datos[0], $datos[1]);
+        $this->view->renderBook($book, $authors, $datos[0], $datos[1], $datos[2]);
     }
 
     function showBooksAdmin(){   
