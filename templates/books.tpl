@@ -2,7 +2,6 @@
 <h3>Agregar Libro</h3>
 <form action="addBook" method="POST">
     <div class="input-group mb-3">
-
         <input class="form-control" type="text" name="titulo" placeholder="Titulo">
         <input class="form-control" type="text" name="genero" placeholder="Genero">
         <select class="form-select" name="autor">

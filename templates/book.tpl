@@ -12,7 +12,7 @@
             <textarea class="form-control" rows="3" name="comment" placeholder="Ingrese un comentario"></textarea>
         </div>
         <div class="col">
-            <select class="form-select" name="puntuacion">
+            <select class="form-select" name="puntuacion" id="select-puntuacion">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
