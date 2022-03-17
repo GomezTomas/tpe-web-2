@@ -8,9 +8,9 @@ class BooksModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_library;charset=utf8', 'root', '');
     }
 
-    function getBooks(){
-        $sentencia = $this->db->prepare("SELECT * FROM libros");
-        $sentencia->execute();
+    function getBooks($search){
+        $sentencia = $this->db->prepare("SELECT * FROM libros WHERE titulo LIKE ?");
+        $sentencia->execute(["%$search%"]);
         $books = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $books;
     }

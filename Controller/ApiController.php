@@ -27,6 +27,9 @@ class ApiController{
                 $comments = $this->model->getCommentsDesc();
                 return $this->view->response($comments, 200);
             }
+        }else if(isset($_GET['puntuacion'])){
+            $comments = $this->model->getCommentsFiltered($_GET['puntuacion']);
+            return $this->view->response($comments, 200);
         }else{
             $comments = $this->model->getComments();
             return $this->view->response($comments, 200);
@@ -45,7 +48,7 @@ class ApiController{
 
     function addComment(){
         $body = $this->getBody();
-        if(!empty($body->comentario) && !empty($body->puntuacion) && !empty($body->id_user) && !empty($body->id_libro)){
+        if(!empty($body->comentario)){
             $this->model->addComment($body->comentario, $body->puntuacion, $body->id_user, $body->id_libro);
             return $this->view->response("Comentario insertado", 200);
         }else{

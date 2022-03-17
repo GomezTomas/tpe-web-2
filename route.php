@@ -20,7 +20,6 @@ $authorsController = new AuthorsController();
 $loginController = new LoginController();
 $userController = new UserController();
 
-
 switch($params[0]){
     case 'home':
         $booksController->showBooks();
@@ -41,7 +40,7 @@ switch($params[0]){
     case 'logout':
         $loginController->logout();
         break;
-    case 'showUsers':
+    case 'usuarios':
         $userController->showUsers();
         break;
     case 'deleteUser':
@@ -53,16 +52,16 @@ switch($params[0]){
     case 'deleteAdmin':
         $userController->updateUser($params[1], 0);
         break;
-    case 'showBook':
+    case 'libro':
         $booksController->showBook($params[1]);
         break;
-    case 'showAuthor':
+    case 'autor':
         $authorsController->showAuthor($params[1]);
         break;
-    case 'showAuthors':
+    case 'autores':
         $authorsController->showAuthorsAdmin();
         break;
-    case 'showBooks':
+    case 'libros':
         $booksController->showBooksAdmin();
         break;
     case 'addBook':

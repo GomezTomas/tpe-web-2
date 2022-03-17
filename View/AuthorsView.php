@@ -13,6 +13,7 @@ class AuthorsView{
     function renderAuthors($authors){
         $this->smarty->assign('authors',$authors);
         $this->smarty->assign('s', isset($_SESSION['email']));
+
         $this->smarty->display('./templates/authors.tpl');
     }
 
@@ -31,6 +32,7 @@ class AuthorsView{
         $this->smarty->assign('logged', isset($_SESSION['email']));
         $this->smarty->assign('rol', $rol);
         $this->smarty->assign('email', $email);
+        
         $this->smarty->display('./templates/author.tpl');
     }
 
@@ -44,7 +46,7 @@ class AuthorsView{
     }
 
     function relocateAuthors(){
-        header("Location:".BASE_URL."showAuthors");
+        header("Location:".BASE_URL."autores");
     }
 
     function relocateHome(){

@@ -7,55 +7,8 @@ let rol = document.querySelector("#id-libro").dataset.rol;
 let submitComment = document.querySelector("#comentar");
 let orderAsc = document.querySelector("#asc");
 let orderDesc = document.querySelector("#desc");
-
-if(submitComment){
-    submitComment.addEventListener("click", addComment);
-}
-if(orderAsc){
-    orderAsc.addEventListener("click", e => {
-        getCommentsOrder(e.target.id);
-    });
-}
-if(orderAsc){
-    orderDesc.addEventListener("click", e => {
-        getCommentsOrder(e.target.id);
-    });
-}
-
-
-async function getComments(){
-    try {
-        let response = await fetch(API_URL);
-        let comments = await response.json();
-        app.comments = comments;
-    } catch (error) {
-        console.log(error);
-    }
-}
-async function getCommentsOrder(order){
-    let url = API_URL + "?order=" + order;
-    try {
-        let response = await fetch(url);
-        let comments = await response.json();
-        app.comments = comments;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function deleteComment(idComment){
-    let url = (API_URL + `/${idComment}`);
-    try{
-        let response = await fetch(url, {
-            method: 'DELETE'
-        });
-        if(response.ok){
-            getComments();
-        }
-    }catch (error) {
-        console.log(error);
-    }
-}
+let filter = document.querySelector("#filter");
+let show = document.querySelector("#show");
 
 let app = new Vue({
     el : "#comments-list",
@@ -71,7 +24,57 @@ let app = new Vue({
     }
 })
 
-getComments();
+show.addEventListener("click", e => {
+    getComments(API_URL);
+});
+
+filter.addEventListener("click", e => {
+    e.preventDefault();
+    let data = new FormData(document.querySelector("#comments-filter"));
+    let url = API_URL + "?puntuacion=" + data.get("puntuacion");
+    getComments(url);
+});
+
+orderAsc.addEventListener("click", e => {
+    let url = API_URL + "?order=" + e.target.id;
+    getComments(url);
+});
+
+orderDesc.addEventListener("click", e => {
+    let url = API_URL + "?order=" + e.target.id;
+    getComments(url);
+});
+
+if(submitComment){
+    submitComment.addEventListener("click", addComment);
+}
+
+async function getComments(url){
+    try {
+        console.log(url);
+        let response = await fetch(url);
+        let comments = await response.json();
+        app.comments = comments;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+getComments(API_URL);
+
+async function deleteComment(idComment){
+    let url = (API_URL + `/${idComment}`);
+    try{
+        let response = await fetch(url, {
+            method: 'DELETE'
+        });
+        if(response.ok){
+            getComments();
+        }
+    }catch (error) {
+        console.log(error);
+    }
+}
 
 async function addComment(e){
     e.preventDefault();

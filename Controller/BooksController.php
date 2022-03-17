@@ -24,7 +24,12 @@ class BooksController{
         if(!$datos){
             $datos= ['', ''];
         }
-        $books = $this->model->getBooks();
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+        }else{
+            $search='';
+        }
+        $books = $this->model->getBooks($search);
         $authors = $this->authorsModel->getAuthors();
         $this->view->renderBooks($books, $authors, $datos[0], $datos[1]);
     }
@@ -42,7 +47,7 @@ class BooksController{
     function showBooksAdmin(){   
         $this->authHelper->checkLoggedIn();
         if($this->authHelper->checkRol()){
-            $books = $this->model->getBooks();
+            $books = $this->model->getBooks('');
             $authors = $this->authorsModel->getAuthors();
             $this->view->renderBooksAdmin($books, $authors);
         }else{

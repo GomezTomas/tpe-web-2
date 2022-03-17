@@ -27,6 +27,13 @@ class CommentsModel{
         return $comments;
     }
 
+    function getCommentsFiltered($filter){
+        $sentencia = $this->db->prepare('SELECT * FROM comentarios WHERE puntuacion = ?');
+        $sentencia->execute([$filter]);
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+
     function getComment($id){
         $sentencia = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ?");
         $sentencia->execute([$id]);

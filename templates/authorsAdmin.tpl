@@ -16,7 +16,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col">
-                    <a href="showAuthor/{$author->id_autor}">{$author->nombre} {$author->apellido}</a>
+                    <a href="autor/{$author->id_autor}">{$author->nombre} {$author->apellido}</a>
                 </div>
                 <div class="col btn-group">
                     <a class="btn btn-outline-danger btn-sm" href="deleteAuthor/{$author->id_autor}">Borrar</a> <a class="btn btn-outline-primary btn-sm" href="modAuthor/{$author->id_autor}">Modificar</a>

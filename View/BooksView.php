@@ -20,7 +20,6 @@ class BooksView{
         $this->smarty->assign('rol', $rol);
         $this->smarty->assign('email', $email);
 
-
         $this->smarty->display('./templates/home.tpl');
     }
 
@@ -35,8 +34,8 @@ class BooksView{
         $this->smarty->assign('rol', $rol);
         $this->smarty->assign('email', $email);
         $this->smarty->assign('id', $id);
+        
         $this->smarty->display('./templates/book.tpl');
-
     }
 
     function renderBooksAdmin($books, $authors){
@@ -54,7 +53,7 @@ class BooksView{
     }
 
     function relocateBooks(){
-        header("Location:".BASE_URL."showBooks");
+        header("Location:".BASE_URL."libros");
     }
     function relocateHome(){
         header("Location:".BASE_URL."home");

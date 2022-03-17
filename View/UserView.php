@@ -20,7 +20,7 @@ class UserView{
     }
 
     function relocateUsers(){
-        header("Location:".BASE_URL."showUsers");
+        header("Location:".BASE_URL."usuarios");
     }
     function relocateHome(){
         header("Location:".BASE_URL."home");

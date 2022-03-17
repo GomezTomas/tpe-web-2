@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2022 a las 21:01:30
+-- Tiempo de generación: 17-03-2022 a las 14:23:27
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -49,6 +49,35 @@ INSERT INTO `autores` (`id_autor`, `nombre`, `apellido`, `nacionalidad`) VALUES
 (21, 'George', 'Orwell', 'Reino Unido'),
 (22, 'Roald', 'Dahl', 'Reino Unido'),
 (23, 'Edgar Allan', 'Poe', 'Estados Unidos');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `comentario` varchar(500) NOT NULL,
+  `puntuacion` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_libro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `comentario`, `puntuacion`, `id_user`, `id_libro`) VALUES
+(1, 'Buen libro', 4, 9, 1),
+(2, 'Pudo ser mejor', 2, 9, 1),
+(3, 'No me gusto', 1, 9, 1),
+(4, 'El mejor de mi vida', 5, 9, 1),
+(5, 'Es uno de mis 10 libros favoritos', 4, 9, 1),
+(6, 'No lo volveria a leer, pero me gusto', 3, 9, 1),
+(7, 'Pesimo, no recomiendo', 1, 9, 1),
+(8, 'VAYAN A LEERLO YA!!', 5, 9, 1),
+(9, 'Me gusto, pero no lo recomendaria a un amigo', 3, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -99,15 +128,16 @@ INSERT INTO `libros` (`id_libro`, `titulo`, `genero`, `descripcion`, `id_autor`)
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
-(2, 'tg@admin.com', '$2y$10$MG8/L85hbLoFUNITHDKlbuHeSWhAD1UOgMl9vGMl1xApIesQDMgXy');
+INSERT INTO `usuarios` (`id`, `email`, `password`, `rol`) VALUES
+(9, 'tg@admin.com', '$2y$10$ArCMA92mbYe2gQqRjsa/c.iUgwcjnK5FUG4uqX0OkxV3cEpWT9uNi', 1);
 
 --
 -- Índices para tablas volcadas
@@ -118,6 +148,12 @@ INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
 --
 ALTER TABLE `autores`
   ADD PRIMARY KEY (`id_autor`);
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `libros`
@@ -140,19 +176,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

@@ -29,7 +29,7 @@ class AuthorsController{
         $datos = $this->authHelper->startSession();
 
         $author = $this->model->getAuthor($id);
-        $books = $this->booksModel->getBooks();
+        $books = $this->booksModel->getBooks('');
         if(!$datos){
             $datos = ["", ""];
         }
@@ -44,7 +44,6 @@ class AuthorsController{
         }else{
             $this->view->relocateHome();
         }
-
     }
 
     function addAuthor(){

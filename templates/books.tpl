@@ -23,7 +23,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col">
-                    <a href="showBook/{$book->id_libro}">{$book->titulo}</a>, Autor: {$autores[$book->id_autor]} 
+                    <a href="libro/{$book->id_libro}">{$book->titulo}</a>, Autor: {$autores[$book->id_autor]} 
                 </div>
                 <div class="col btn-group">
                     <a class="btn btn-outline-danger btn-sm" href="deleteBook/{$book->id_libro}">Borrar</a> <a class="btn btn-outline-primary btn-sm" href="modBook/{$book->id_libro}">Modificar</a>

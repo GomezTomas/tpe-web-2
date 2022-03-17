@@ -17,9 +17,9 @@
             <div class="d-flex flex-row">
                 <a class="nav-link" href="home">Home</a>
                 {if $rol == 1}
-                <a class="nav-link" href="showBooks">Libros</a>
-                <a class="nav-link" href="showAuthors">Autores</a>
-                <a class="nav-link" href="showUsers">Usuarios</a>
+                <a class="nav-link" href="libros">Libros</a>
+                <a class="nav-link" href="autores">Autores</a>
+                <a class="nav-link" href="usuarios">Usuarios</a>
                 {/if}
             </div>
             <div class="d-flex flex-row-reverse bd-highlight">

@@ -1,5 +1,5 @@
 {include file='header.tpl'}
-<h2>{$author->nombre} {$author->apellido}</h1>
+<h2>{$author->nombre} {$author->apellido}</h2>
 <h4>{$author->nacionalidad}</h4>
 <ul class="list-group list-group-flush">
     {foreach from=$libros item=$libro}

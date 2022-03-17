@@ -2,8 +2,8 @@
 <div id="id-libro" data-id="{$book->id_libro}" data-rol="{$rol}">
     <h2>{$book->titulo}<h2>
 </div>
-<h3>{$author}
-<h4>{$book->genero}</h3>
+<h3>{$author}</h3>
+<h4>{$book->genero}</h4>
 <p>{$book->descripcion}</p>
 {if $logged}
 <form id="form-comments">
@@ -27,15 +27,5 @@
 <div id="comments" data-user = "{$id}">
     {include file="vue/comments.tpl"}
 </div>
-<div class=row>
-<div class=col>
-<button id="asc" class="btn btn-outline-primary form-control">Ordernar asc</button>
-</div>
-<div class=col>
-<button id="desc" class="btn btn-outline-primary form-control">Ordernar desc</button>
-</div>
-</div>
-
 <script src="js/app.js"></script>
-
 {include file="footer.tpl"}
